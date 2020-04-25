@@ -1,16 +1,6 @@
 #!/usr/bin/env bash
 
-apt-get purge -yqq --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false \
-        apt-utils \
-        build-essential \
-        dpkg-dev \
-        file \
-        libc-client-dev \
-        libc-dev \
-        libpcre3-dev \
-        pkg-config \
-        re2c
-
+apt-get purge -yqq --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false
 apt-get autoremove -yqq --purge
 apt-get autoclean -yqq
 apt-get clean

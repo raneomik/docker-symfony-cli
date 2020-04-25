@@ -1,4 +1,4 @@
-FROM edbizarro/gitlab-ci-pipeline-php:7.3-fpm
+FROM edbizarro/gitlab-ci-pipeline-php:7.4
 
 USER root
 
