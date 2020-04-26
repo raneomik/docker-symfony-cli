@@ -48,7 +48,15 @@ docker-php-ext-install -j "$(nproc)" exif xmlrpc pcntl bcmath bz2 calendar intl 
 docker-php-source delete
 
 
-docker-php-ext-configure gd --with-freetype --with-jpeg
+if [[ $PHP_VERSION == "7.4" ]]; then
+  docker-php-ext-configure gd --with-freetype --with-jpeg
+else
+  docker-php-ext-configure gd \
+          --with-gd \
+          --with-freetype-dir=/usr/include \
+          --with-jpeg-dir=/usr/include \
+          --with-png-dir=/usr/include
+fi
 
 docker-php-ext-install -j "$(nproc)" gd
 
