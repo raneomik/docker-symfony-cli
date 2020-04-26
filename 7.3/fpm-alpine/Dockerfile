@@ -1,6 +1,5 @@
 FROM php:7.3-fpm-alpine
 
-
 ARG BUILD_DATE
 ARG VCS_REF
 
@@ -21,7 +20,6 @@ ENV COMPOSER_HOME=$HOME/.composer
 ENV PATH=$HOME/.yarn/bin:$PATH
 ENV GOSS_VERSION=0.3.8
 ENV NODE_VERSION=12
-ENV NPM_VERSION=6
 ENV YARN_VERSION=latest
 ENV PHP_VERSION=7.3
 
@@ -60,6 +58,5 @@ RUN ln -s /usr/lib/npm/bin/npm-cli.js /usr/bin/npm \
 USER $IMAGE_USER
 
 WORKDIR /var/www/html
-
 
 CMD ["php", "-a"]
