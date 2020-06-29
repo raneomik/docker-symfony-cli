@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 set -euf -o pipefail
 
@@ -44,7 +45,7 @@ docker-php-ext-configure ldap
 docker-php-ext-install -j "$(nproc)" ldap
 PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl
 docker-php-ext-install -j "$(nproc)" imap
-docker-php-ext-install -j "$(nproc)" exif xmlrpc pcntl bcmath bz2 calendar intl mysqli opcache pdo_mysql pdo_pgsql pgsql soap xsl zip gmp
+docker-php-ext-install -j "$(nproc)" exif xmlrpc pcntl bcmath bz2 calendar intl mysqli opcache pdo_mysql pdo_pgsql pgsql soap xsl zip gmp mbstring iconv
 docker-php-source delete
 
 
