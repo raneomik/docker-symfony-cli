@@ -12,9 +12,7 @@ source "$HOME/.sdkman/bin/sdkman-init.sh" && \
     rm -rf $HOME/.sdkman/tmp/*
 cp $HOME/.sdkman/candidates/java/current/bin/java /usr/local/bin/
 
-JAVA_HOME="/usr/local/bin/java"
-export JAVA_HOME
-PATH="$JAVA_HOME/bin:$PATH"
-export PATH
+export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
+export PATH="$JAVA_HOME/bin:$PATH"
 
 pecl install grpc && docker-php-ext-enable grpc
