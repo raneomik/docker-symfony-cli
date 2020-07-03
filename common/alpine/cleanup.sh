@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+docker-php-source delete
+
 rm -rf /tmp/* \
         /usr/includes/* \
         /usr/share/man/* \
