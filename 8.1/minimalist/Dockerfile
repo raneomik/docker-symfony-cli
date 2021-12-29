@@ -12,6 +12,8 @@ RUN apk --update --no-cache add \
   libxml2-dev \
   libxslt-dev \
   oniguruma-dev \
+  openssh-client \
+  rsync \
   && docker-php-ext-configure intl \
   && docker-php-ext-install -j "$(nproc)" pdo pdo_mysql gd opcache intl zip calendar dom mbstring zip gd xsl
 
