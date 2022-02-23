@@ -15,7 +15,8 @@ RUN apk --update --no-cache add \
   openssh-client \
   rsync \
   && docker-php-ext-configure intl \
-  && docker-php-ext-install -j "$(nproc)" pdo pdo_mysql gd opcache intl zip calendar dom mbstring zip gd xsl
+  && docker-php-ext-install -j "$(nproc)" pdo pdo_mysql gd opcache intl zip calendar dom mbstring zip gd xsl \
+  && docker-php-ext-install soap
 
 RUN docker-php-source extract \
     && apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS \
