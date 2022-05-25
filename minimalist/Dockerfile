@@ -1,4 +1,7 @@
-FROM php:8.1-alpine
+ARG VERSION
+FROM php:${VERSION}-alpine
+
+WORKDIR /tmp
 
 RUN apk --update --no-cache add \
   git \
@@ -13,9 +16,25 @@ RUN apk --update --no-cache add \
   libxslt-dev \
   oniguruma-dev \
   openssh-client \
-  rsync \
-  && docker-php-ext-configure intl \
-  && docker-php-ext-install -j "$(nproc)" pdo pdo_mysql gd opcache intl zip calendar dom mbstring zip gd xsl soap exif
+  rsync
+
+RUN docker-php-ext-configure intl \
+  && docker-php-ext-install -j "$(nproc)" \
+  pdo \
+  pdo_mysql \
+  gd \
+  opcache \
+  intl \
+  zip \
+  calendar \
+  dom \
+  mbstring \
+  zip \
+  gd \
+  xsl \
+  soap \
+  sockets \
+  exif
 
 RUN docker-php-source extract \
     && apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS \
@@ -29,8 +48,13 @@ RUN docker-php-source extract \
 RUN curl -o /usr/local/bin/composer https://getcomposer.org/download/latest-stable/composer.phar \
   && chmod +x /usr/local/bin/composer
 
-RUN curl https://get.symfony.com/cli/installer -o - | bash \
- && mv $HOME/.symfony/bin/symfony /usr/local/bin/symfony
+#RUN curl https://get.symfony.com/cli/installer -o - | bash \
+# && mv $HOME/.symfony/bin/symfony /usr/local/bin/symfony
+
+COPY ./common/alpine/latest-symfony-cli.sh /tmp/
+RUN bash ./latest-symfony-cli.sh
+RUN mv /tmp/symfony /usr/local/bin/symfony \
+    && chmod +x /usr/local/bin/symfony
 
 RUN docker-php-source delete \
  && rm -rf /tmp/* \
