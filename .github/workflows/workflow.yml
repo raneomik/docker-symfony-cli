@@ -24,9 +24,8 @@ jobs:
       - name: Build and test
         run: |
           VERSION=${{ matrix.php_version }}
-          TAG="${{ matrix.php_version }}-${{ matrix.variant }}"
           make build
-          docker images | grep raneomik/symfony-cli
+          docker images | grep symfony-cli
       - name: Login to DockerHub
         # Merge ~ push.
         if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
