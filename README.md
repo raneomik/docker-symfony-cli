@@ -1,7 +1,9 @@
 # docker-symfony-cli
-docker image embedding [symfony binary tool](https://symfony.com/download).
+##  Minimalist version (75Mb)
 
-It's based on [edbizarro gitlib-ci image](https://github.com/edbizarro/gitlab-ci-pipeline-php), 
-and is also mainly for CI php/symfony applications/ testing tools.
+Generic php-alpine docker image embedding [symfony binary tool](https://symfony.com/download), openssh-client, rsync, pcov (only, not xDebug) for test coverage...
 
-The symfony bin also comes with a [full-featured local web-dev server](https://symfony.com/doc/current/setup/symfony_server.html).
+It's inspired by [edbizarro gitlib-ci image](https://github.com/edbizarro/gitlab-ci-pipeline-php), 
+and is aimed for (as lightweight as possible) CI/CD php/symfony applications.
+
+Required php extensions comes by need (issues / PRs are welcome).
