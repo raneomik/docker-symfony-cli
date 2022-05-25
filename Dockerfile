@@ -1,5 +1,5 @@
-ARG VERSION
-FROM php:${VERSION}-alpine
+ARG PHP_VERSION
+FROM php:${PHP_VERSION}-alpine
 
 WORKDIR /tmp
 
@@ -48,11 +48,8 @@ RUN docker-php-source extract \
 RUN curl -o /usr/local/bin/composer https://getcomposer.org/download/latest-stable/composer.phar \
   && chmod +x /usr/local/bin/composer
 
-#RUN curl https://get.symfony.com/cli/installer -o - | bash \
-# && mv $HOME/.symfony/bin/symfony /usr/local/bin/symfony
-
-COPY ./common/alpine/latest-symfony-cli.sh /tmp/
-RUN bash ./latest-symfony-cli.sh
+COPY fetch-symfony-cli.sh /tmp/
+RUN bash ./fetch-symfony-cli.sh
 RUN mv /tmp/symfony /usr/local/bin/symfony \
     && chmod +x /usr/local/bin/symfony
 

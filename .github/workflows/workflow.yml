@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: Build and test
         run: |
-          VERSION=${{ matrix.php_version }}
+          PHP_VERSION=${{ matrix.php_version }}
           make build
           docker images | grep symfony-cli
       - name: Login to DockerHub
@@ -37,6 +37,6 @@ jobs:
         # Merge ~ push.
         if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
         run: |
-          VERSION=${{ matrix.php_version }}
+          PHP_VERSION=${{ matrix.php_version }}
           TAG="${{ matrix.php_version }}-${{ matrix.variant }}"
           make tag push

@@ -1,28 +1,28 @@
 .DEFAULT_GLOBAL = help
 SHELL:=/bin/bash
 
+.PHONY: help
+
 help: ## Show this help hint
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
-##---------------
-## GIT
-##
-tag-update:
+
+##-------------------
+## Git
+git-tag: ## Update tag on git repository
 	git push origin :refs/tags/$(TAG)
 	git tag -fa $(TAG)
 	git push -f --tags
 
-##---------------
-## Docker
 ##
-DIR ?= minimalist
-VERSION ?= 8.1
-build:
-	docker build -f $(DIR)/Dockerfile --force-rm --tag symfony-cli . --build-arg VERSION=$(VERSION)
+## Docker
+PHP_VERSION ?= 8.1
+build: ## Build docker image
+	docker build --force-rm --tag symfony-cli . --build-arg PHP_VERSION=$(PHP_VERSION)
 
-tag:
+TAG ?= 8.1-minimalist
+tag: ## Tag docker image
 	docker tag symfony-cli raneomik/symfony-cli:$(TAG)
 
-push:
+push: ## Push docker image
 	docker push raneomik/symfony-cli:$(TAG)
-
