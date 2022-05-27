@@ -8,17 +8,22 @@ help: ## Show this help hint
 
 
 ##-------------------
-## Git
+## Git :
 git-tag: ## Update tag on git repository
 	git push origin :refs/tags/$(TAG)
 	git tag -fa $(TAG)
 	git push -f --tags
 
-##
-## Docker
+##-------------------
+## Docker :
 PHP_VERSION ?= 8.1
+WITH ?= ''
 build: ## Build docker image
-	docker build --force-rm --tag symfony-cli . --build-arg PHP_VERSION=$(PHP_VERSION)
+	docker build --force-rm --tag symfony-cli . --build-arg PHP_VERSION=$(PHP_VERSION) --build-arg WITH=$(WITH)
+
+remove: ## Remove docker image
+	@container=$(docker images symfony-cli -a -q)
+	@[ "${container}" ]  && docker rmi $(container) || echo "No container to remove"
 
 TAG ?= 8.1-minimalist
 tag: ## Tag docker image
