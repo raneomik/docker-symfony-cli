@@ -1,5 +1,4 @@
 # docker-symfony-cli
-##  Minimalist version (75Mb)
 
 Generic php-alpine docker image embedding [symfony binary tool](https://symfony.com/download), openssh-client, rsync, pcov (only, not xDebug) for test coverage...
 

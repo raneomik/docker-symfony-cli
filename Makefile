@@ -17,13 +17,16 @@ git-tag: ## Update tag on git repository
 ##-------------------
 ## Docker :
 PHP_VERSION ?= 8.1
-WITH ?= ''
+WITH_APK ?= ''
+WITH_ENABLED_EXT ?= ''
 build: ## Build docker image
-	docker build --force-rm --tag symfony-cli . --build-arg PHP_VERSION=$(PHP_VERSION) --build-arg WITH=$(WITH)
+	docker build --force-rm --tag symfony-cli . --build-arg PHP_VERSION=$(PHP_VERSION) \
+ 	--build-arg WITH_APK=$(WITH_APK) \
+ 	--build-arg WITH_ENABLED_EXT=$(WITH_ENABLED_EXT)
 
 remove: ## Remove docker image
 	@container=$(docker images symfony-cli -a -q)
-	@[ "${container}" ]  && docker rmi $(container) || echo "No container to remove"
+	@[ "${container}" ] && docker rmi $(container) || echo "No container to remove"
 
 TAG ?= 8.1-minimalist
 tag: ## Tag docker image

@@ -38,7 +38,7 @@ jobs:
       - name: Build and test with Memcached
         if: ${{ 'memcached' == matrix.variant }}
         run: |
-          make build PHP_VERSION=${{ matrix.php_version }} WITH=${{ matrix.variant }}
+          make build PHP_VERSION=${{ matrix.php_version }} WITH_APK=libmemcached-dev WITH_ENABLED_EXT=memcached
           docker images | grep symfony-cli
 
       - name: Login to DockerHub
