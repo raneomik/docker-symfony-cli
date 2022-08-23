@@ -15,6 +15,7 @@ RUN apk --update --no-cache add \
   libxml2-dev \
   libxslt-dev \
   libxrender \
+  imagemagick imagemagick-dev \
   oniguruma-dev \
   openssh-client \
   rsync
@@ -42,12 +43,13 @@ RUN docker-php-ext-configure intl \
   xsl \
   soap \
   sockets \
-  exif
+  exif \
+  bcmath
 
 RUN docker-php-source extract \
     && apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS
 
-ARG WITH_BASE_ENABLED_EXT="apcu pcov"
+ARG WITH_BASE_ENABLED_EXT="apcu pcov imagick"
 ARG WITH_ENABLED_EXT
 ARG WITH_ENABLED_EXT_LIST="$WITH_BASE_ENABLED_EXT $WITH_ENABLED_EXT"
 
