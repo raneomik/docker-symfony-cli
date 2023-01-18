@@ -16,7 +16,7 @@ git-tag: ## Update tag on git repository
 
 ##-------------------
 ## Docker :
-PHP_VERSION ?= 8.1
+PHP_VERSION ?= 8.2
 WITH_APK ?= ''
 WITH_ENABLED_EXT ?= ''
 build: ## Build docker image
@@ -28,7 +28,7 @@ remove: ## Remove docker image
 	@container=$(docker images symfony-cli -a -q)
 	@[ "${container}" ] && docker rmi $(container) || echo "No container to remove"
 
-TAG ?= 8.1-minimalist
+TAG ?= 8.2-minimalist
 tag: ## Tag docker image
 	docker tag symfony-cli raneomik/symfony-cli:$(TAG)
 
