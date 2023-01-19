@@ -14,7 +14,6 @@ RUN apk --update --no-cache add \
   libzip-dev \
   libxml2-dev \
   libxslt-dev \
-  libxrender \
   libgomp \
   linux-headers\
   imagemagick imagemagick-dev \
@@ -25,8 +24,7 @@ RUN apk --update --no-cache add \
 RUN curl -o /usr/local/bin/composer https://getcomposer.org/download/latest-stable/composer.phar \
   && chmod +x /usr/local/bin/composer
 
-RUN apk add --no-cache bash \
-    && curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash \
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash \
     && apk add symfony-cli
 
 RUN docker-php-ext-configure intl \
