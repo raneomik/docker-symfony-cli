@@ -12,9 +12,13 @@ jobs:
       matrix:
         include:
           - variant: 'minimalist'
+            php_version: '8.2'
+          - variant: 'minimalist'
             php_version: '8.1'
           - variant: 'minimalist'
             php_version: '7.4'
+          - variant: 'memcached'
+            php_version: '8.2'
           - variant: 'memcached'
             php_version: '8.1'
           - variant: 'memcached'

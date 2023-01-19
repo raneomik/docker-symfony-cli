@@ -16,6 +16,7 @@ RUN apk --update --no-cache add \
   libxslt-dev \
   libxrender \
   libgomp \
+  linux-headers\
   imagemagick imagemagick-dev \
   oniguruma-dev \
   openssh-client \
