@@ -29,7 +29,7 @@ remove: ## Remove docker image
 	@[ "${container}" ] && docker rmi $(container) || echo "No container to remove"
 
 TAG ?= 8.2-minimalist
-DOCKERHUB_USERNAME ?= devchoosit
+DOCKERHUB_USERNAME ?= spiriitlabs
 tag: ## Tag docker image
 	docker tag symfony-cli $(DOCKERHUB_USERNAME)/symfony-cli:$(TAG)
 

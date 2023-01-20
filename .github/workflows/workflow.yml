@@ -54,4 +54,4 @@ jobs:
 
       - name: Release
         if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
-        run: make tag push TAG="${{ matrix.php_version }}-${{ matrix.variant }}" DOCKERHUB_USERNAME="${{ secrets.DOCKERHUB_USERNAME }}"
+        run: make tag push TAG="${{ matrix.php_version }}-${{ matrix.variant }}" DOCKERHUB_USERNAME="spiriitlabs"
