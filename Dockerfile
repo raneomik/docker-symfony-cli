@@ -60,7 +60,6 @@ RUN if [ "$WITH_APK" ]; then apk --update --no-cache add $WITH_APK; fi \
     && docker-php-ext-enable $WITH_ENABLED_EXT_LIST
 
 RUN  apk del .phpize-deps-configure \
-    && apk del .build-deps \
     && docker-php-source delete \
     && rm -rf /tmp/* \
         /usr/includes/* \
