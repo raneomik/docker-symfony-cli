@@ -29,8 +29,9 @@ remove: ## Remove docker image
 	@[ "${container}" ] && docker rmi $(container) || echo "No container to remove"
 
 TAG ?= 8.2-minimalist
+DOCKERHUB_USERNAME ?= devchoosit
 tag: ## Tag docker image
-	docker tag symfony-cli raneomik/symfony-cli:$(TAG)
+	docker tag symfony-cli $(DOCKERHUB_USERNAME)/symfony-cli:$(TAG)
 
 push: ## Push docker image
-	docker push raneomik/symfony-cli:$(TAG)
+	docker push $(DOCKERHUB_USERNAME)/symfony-cli:$(TAG)
