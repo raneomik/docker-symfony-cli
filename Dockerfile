@@ -8,6 +8,7 @@ RUN apk --update --no-cache add \
   bash \
   libintl \
   icu-dev \
+  icu-data-full \
   zlib-dev \
   libpng-dev \
   sqlite-dev \
